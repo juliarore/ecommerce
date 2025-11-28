@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { NgClass } from '@angular/common';
 import { Article } from '../../models/article.model';
+import { ArticleQuantityChange } from '../../models/article-quantity-change-model';
 
 @Component({
   selector: 'app-article-item',
@@ -9,15 +10,15 @@ import { Article } from '../../models/article.model';
   styleUrl: './article-item.scss',
 })
 export class ArticleItem {
-  @Input() article!: Article;
+  @Input() articleQuantityChange!: ArticleQuantityChange;
 
   incrementQuantity(): void {
-    this.article.quantityInCart++;
+    this.articleQuantityChange.article.quantityInCart++;
   }
 
   decrementQuantity(): void {
-    if (this.article.quantityInCart > 0) {
-      this.article.quantityInCart--;
+    if (this.articleQuantityChange.article.quantityInCart > 0) {
+      this.articleQuantityChange.article.quantityInCart--;
     }
   }
 }

@@ -1,26 +1,25 @@
-<div [class]="article.isOnSale ? 'article article-on-sale' : 'article'">
+<div [class]="articleQuantityChange.article.isOnSale ? 'article article-on-sale' : 'article'">
 
-  <img src="{{ article.imageUrl }}" alt="{{ article.name }}" class="article__image"/>
+  <img src="{{ articleQuantityChange.article.imageUrl }}" alt="{{ articleQuantityChange.article.name }}" class="article__image"/>
 
-  <h2 class="article__name">{{ article.name }}</h2>
+  <h2 class="article__name">{{ articleQuantityChange.article.name }}</h2>
+  <p class="article__price" [ngClass]="{'article__price-on-sale': articleQuantityChange.article.isOnSale, 'article__price-not-on-sale': !articleQuantityChange.article.isOnSale}">{{ articleQuantityChange.article.price }} €</p>
 
-  <p class="article__price" [ngClass]="{'article__price-on-sale': article.isOnSale, 'article__price-not-on-sale': !article.isOnSale}">{{ article.price }} €</p>
-
-  @if (article.isOnSale) {
+  @if (articleQuantityChange.article.isOnSale) {
     <p class="article__sale article__sale-on-sale">Disponible</p>
   } @else {
     <p class="article__sale article__sale-not-on-sale">Agotado</p>
   }
 
-  @if (article.isOnSale) {
+  @if (articleQuantityChange.article.isOnSale) {
     <div class="article__quantity-controls">
       <button
         (click)="decrementQuantity()"
-        [disabled]="article.quantityInCart === 0"
+        [disabled]="articleQuantityChange.article.quantityInCart === 0"
         class="article__button">
         -
       </button>
-      <span class="article__quantity">{{ article.quantityInCart }}</span>
+      <span class="article__quantity">{{ articleQuantityChange.article.quantityInCart }}</span>
       <button
         (click)="incrementQuantity()"
         class="article__button">
