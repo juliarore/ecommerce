@@ -1,1 +1,15 @@
-<p>article-item works!</p>
+<div [class]="article.isOnSale ? 'article article-on-sale' : 'article'">
+
+  <img src="{{ article.imageUrl }}" alt="{{ article.name }}" class="article__image"/>
+
+  <h2 class="article__name">{{ article.name }}</h2>
+  <p class="article__price">{{ article.price }} €</p>
+
+  @if (article.isOnSale) {
+    <p class="article__sale article__sale-on-sale">Disponible</p>
+  } @else {
+    <p class="article__sale article__sale-not-on-sale">Agotado</p>
+  }
+
+  <p class="article__quantity">En el carrito: {{ article.quantityInCart }}</p>
+</div>

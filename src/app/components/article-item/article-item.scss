@@ -1,0 +1,32 @@
+.article {
+  max-width: 350px;
+  padding: 2rem;
+  border-radius: 5px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+
+  &-on-sale {
+    border: 1px solid #3FA37B;
+  }
+
+  &__image {
+    width: 100%;
+    border-radius: 5px;
+  }
+
+  &__price {
+    font-weight: 600;
+  }
+
+
+  &__sale {
+    font-weight: 600;
+
+    &-on-sale {
+      color: #3FA37B;
+    }
+
+    &-not-on-sale {
+      color: #D9534F;
+    }
+  }
+}
