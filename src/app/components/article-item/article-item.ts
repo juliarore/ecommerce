@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NgClass } from '@angular/common';
 import { Article } from '../../models/article.model';
 
@@ -9,14 +9,7 @@ import { Article } from '../../models/article.model';
   styleUrl: './article-item.scss',
 })
 export class ArticleItem {
-
-  article: Article = {
-    name: 'Adidas Samba OG',
-    imageUrl: '/assets/images/adidas-samba-og.jpg',
-    price: 120,
-    isOnSale: true,
-    quantityInCart: 1
-  };
+  @Input() article!: Article;
 
   incrementQuantity(): void {
     this.article.quantityInCart++;
