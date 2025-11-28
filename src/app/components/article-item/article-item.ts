@@ -17,4 +17,13 @@ export class ArticleItem {
     quantityInCart: 1
   };
 
+  incrementQuantity(): void {
+    this.article.quantityInCart++;
+  }
+
+  decrementQuantity(): void {
+    if (this.article.quantityInCart > 0) {
+      this.article.quantityInCart--;
+    }
+  }
 }

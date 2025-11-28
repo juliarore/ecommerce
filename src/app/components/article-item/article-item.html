@@ -11,5 +11,18 @@
     <p class="article__sale article__sale-not-on-sale">Agotado</p>
   }
 
-  <p class="article__quantity">En el carrito: {{ article.quantityInCart }}</p>
+  <div class="article__quantity-controls">
+    <button
+      (click)="decrementQuantity()"
+      [disabled]="article.quantityInCart === 0"
+      class="article__button">
+      -
+    </button>
+    <span class="article__quantity">{{ article.quantityInCart }}</span>
+    <button
+      (click)="incrementQuantity()"
+      class="article__button">
+      +
+    </button>
+  </div>
 </div>
