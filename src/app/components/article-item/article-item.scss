@@ -15,8 +15,11 @@
 
   &__price {
     font-weight: 600;
-  }
 
+    &-not-on-sale {
+      color: #cacaca;
+    }
+  }
 
   &__sale {
     font-weight: 600;

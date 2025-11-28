@@ -3,7 +3,8 @@
   <img src="{{ article.imageUrl }}" alt="{{ article.name }}" class="article__image"/>
 
   <h2 class="article__name">{{ article.name }}</h2>
-  <p class="article__price">{{ article.price }} €</p>
+
+  <p class="article__price" [ngClass]="{'article__price-on-sale': article.isOnSale, 'article__price-not-on-sale': !article.isOnSale}">{{ article.price }} €</p>
 
   @if (article.isOnSale) {
     <p class="article__sale article__sale-on-sale">Disponible</p>
@@ -11,18 +12,20 @@
     <p class="article__sale article__sale-not-on-sale">Agotado</p>
   }
 
-  <div class="article__quantity-controls">
-    <button
-      (click)="decrementQuantity()"
-      [disabled]="article.quantityInCart === 0"
-      class="article__button">
-      -
-    </button>
-    <span class="article__quantity">{{ article.quantityInCart }}</span>
-    <button
-      (click)="incrementQuantity()"
-      class="article__button">
-      +
-    </button>
+  @if (article.isOnSale) {
+    <div class="article__quantity-controls">
+      <button
+        (click)="decrementQuantity()"
+        [disabled]="article.quantityInCart === 0"
+        class="article__button">
+        -
+      </button>
+      <span class="article__quantity">{{ article.quantityInCart }}</span>
+      <button
+        (click)="incrementQuantity()"
+        class="article__button">
+        +
+      </button>
+    </div>
+  }
   </div>
-</div>
