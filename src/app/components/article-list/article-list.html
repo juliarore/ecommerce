@@ -1,5 +1,8 @@
 <div class="article-list">
-  @for (articleQuantityChange of articleQuantityChanges; track articleQuantityChange.article.name) {
-    <app-article-item [articleQuantityChange]="articleQuantityChange"></app-article-item>
+  @for (article of articles; track article.id) {
+    <app-article-item
+      [article]="article"
+      (quantityChange)="updateQuantity($event)">
+    </app-article-item>
   }
 </div>
