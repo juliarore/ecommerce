@@ -1,3 +1,18 @@
-<app-article-list></app-article-list>
+<app-navbar (routeChange)="navbarChangeView($event)"></app-navbar>
+
+<!-- INICIO / ARTÍCULOS -->
+@if (currentView === 'inicio' || currentView === 'articulos') {
+  <app-article-list></app-article-list>
+}
+
+<!-- NUEVO ARTÍCULO TEMPLATE -->
+@if (currentView === 'template') {
+  <p>Template Driven</p>
+}
+
+<!-- NUEVO ARTÍCULO REACTIVO -->
+@if (currentView === 'reactive') {
+  <p>Reactive Form</p>
+}
 
 <router-outlet />
