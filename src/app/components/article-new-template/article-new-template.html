@@ -1,0 +1,80 @@
+<div class="article-form">
+  <h2 class="article-form__title">Crear nuevo artículo</h2>
+
+  <form #articleForm="ngForm" (ngSubmit)="onSubmit(articleForm)" class="article-form__form">
+
+    <!-- Nombre del artículo -->
+    <div class="article-form__field">
+      <label for="name" class="article-form__label">Nombre del artículo</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        [(ngModel)]="article.name"
+        #name="ngModel"
+        required
+        placeholder="Introduce el nombre"
+        class="article-form__input">
+
+      @if (name.invalid && (name.touched || formSubmitted)) {
+        <span class="article-form__error">El nombre del artículo es obligatorio</span>
+      }
+    </div>
+
+    <!-- Precio del artículo -->
+    <div class="article-form__field">
+      <label for="price" class="article-form__label">Precio del artículo</label>
+      <input
+        type="number"
+        id="price"
+        name="price"
+        [(ngModel)]="article.price"
+        #price="ngModel"
+        required
+        min="0.01"
+        placeholder="Introduce el precio"
+        class="article-form__input">
+
+      @if (price.invalid && (price.touched || formSubmitted)) {
+        <span class="article-form__error">El precio es obligatorio</span>
+      }
+    </div>
+
+    <!-- URL de la imagen -->
+    <div class="article-form__field">
+      <label for="imageUrl" class="article-form__label">URL de la imagen</label>
+      <input
+        type="text"
+        id="imageUrl"
+        name="imageUrl"
+        [(ngModel)]="article.imageUrl"
+        #imageUrl="ngModel"
+        required
+        pattern="^https?:\/\/([a-zA-Z0-9]+\.)?[a-zA-Z0-9]+\.[a-zA-Z]{2,3}(\/[a-zA-Z0-9._-]+)*\.(jpg|jpeg|png|gif)$"
+        placeholder="Introduce la URL"
+        class="article-form__input">
+
+      @if (imageUrl.invalid && (imageUrl.touched || formSubmitted)) {
+        @if (imageUrl.errors?.['required']) {
+          <span class="article-form__error">La URL de la imagen es obligatoria</span>
+        } @else if (imageUrl.errors?.['pattern']) {
+          <span class="article-form__error">La URL de la imagen no es válida</span>
+        }
+      }
+    </div>
+
+    <!-- Checkbox -->
+    <div class="article-form__field article-form__field--checkbox">
+      <label for="isOnSale" class="article-form__checkbox-label">
+        <input
+          type="checkbox"
+          id="isOnSale"
+          name="isOnSale"
+          [(ngModel)]="article.isOnSale"
+          class="article-form__checkbox"> En venta
+      </label>
+    </div>
+
+    <button type="submit" class="article-form__button">Crear artículo</button>
+  </form>
+</div>
