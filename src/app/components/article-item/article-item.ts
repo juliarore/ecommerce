@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { NgClass } from '@angular/common';
 import { Article } from '../../models/article.model';
 import { ArticleQuantityChange } from '../../models/article-quantity-change';
@@ -8,6 +8,7 @@ import { ArticleQuantityChange } from '../../models/article-quantity-change';
   imports: [NgClass],
   templateUrl: './article-item.html',
   styleUrl: './article-item.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ArticleItem {
   @Input() article!: Article;
