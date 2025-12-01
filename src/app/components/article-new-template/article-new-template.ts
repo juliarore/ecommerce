@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { CommonModule } from '@angular/common';
 import { ArticleForm } from '../../models/article-form-model';
 
 @Component({
   selector: 'app-article-new-template',
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule],
   templateUrl: './article-new-template.html',
   styleUrl: './article-new-template.scss',
 })
