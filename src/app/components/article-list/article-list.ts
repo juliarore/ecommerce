@@ -23,9 +23,9 @@ export class ArticleList implements OnInit {
   }
 
   updateQuantity(change: ArticleQuantityChange): void {
-    // const article = this.articles.find(article => article.id === change.article.id);
-    // if (article) {
-    //   article.quantityInCart = change.quantity;
-    // }
+    // Calculem la diferència entre la nova quantitat i l'antiga
+    const changeInQuantity = change.quantity - change.article.quantityInCart;
+    // Actualitzem la quantitat utilitzant el servei i suscrivint-nos a l'observable
+    this.articleService.changeQuantity(change.article.id, changeInQuantity).subscribe();
   }
 }

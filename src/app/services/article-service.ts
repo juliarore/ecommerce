@@ -43,7 +43,20 @@ export class ArticleService {
     return this.articlesSubject.asObservable();
   }
 
-  // changeQuantity(articleID: number, changeInQuantity: number): Observable<Article>
+  changeQuantity(articleID: number, changeInQuantity: number): Observable<Article> {
+    // Busquem l'article pel seu ID
+    const article = this.articles.find(article => article.id === articleID);
+    if (article) {
+      // Actualitzem la quantitat
+      article.quantityInCart += changeInQuantity;
+      // Emitim la nova llista d'articles perquè els subscritors rebin el canvi
+      this.articlesSubject.next(this.articles);
+      // Retornem l'article actualitzat com un observable
+      return new BehaviorSubject<Article>(article).asObservable();
+    } else {
+      throw new Error('No se ha encontrado ningún artículo.');
+    }
+  }
 
   // create(article: Article): Observable<any>
 }
