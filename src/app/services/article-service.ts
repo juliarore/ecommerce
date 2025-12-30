@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Article } from '../models/article.model';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, of } from 'rxjs';
+import { ArticleForm } from '../models/article-form-model';
 
 @Injectable({
   providedIn: 'root',
@@ -58,5 +59,16 @@ export class ArticleService {
     }
   }
 
-  // create(article: Article): Observable<any>
+  create(article: ArticleForm): Observable<Article> {
+    // Creem un nou ID sumant 1 al màxim ID existent
+    const newId: number = this.articles.length > 0 ? Math.max(...this.articles.map(a => a.id)) + 1 : 1;
+    // Creem el nou article afegint l'ID i la quantitat a les dades del formulari
+    const newArticle: Article = { ...article, id: newId, quantityInCart: 0 };
+    // Afegim el nou article a l'array
+    this.articles.push(newArticle);
+    // Emitim la nova llista d'articles perquè els components s'actualitzin
+    this.articlesSubject.next(this.articles);
+    // Retornem el nou article com un observable
+    return of(newArticle);
+  }
 }

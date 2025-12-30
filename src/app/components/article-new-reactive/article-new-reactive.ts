@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NameArticleValidator } from '../../validators/name-article-validator';
+import { ArticleService } from '../../services/article-service';
+
 
 @Component({
   selector: 'app-article-new-reactive',
@@ -12,7 +14,7 @@ export class ArticleNewReactive {
   articleForm: FormGroup;
   formSubmitted = false;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private articleService: ArticleService) {
     this.articleForm = this.fb.group({
       name: ['', [Validators.required, NameArticleValidator]],
       price: [0, [Validators.required, Validators.min(0.1)]],
@@ -43,7 +45,11 @@ export class ArticleNewReactive {
     this.formSubmitted = true;
 
     if (this.articleForm.valid) {
-      console.log(this.articleForm.value);
+      // Cridem al servei per crear el nou article
+      this.articleService.create(this.articleForm.value).subscribe(() => {
+        this.articleForm.reset();
+        this.formSubmitted = false;
+      });
     }
   }
 }
