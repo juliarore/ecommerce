@@ -1,5 +1,5 @@
 <div class="article-list">
-  @for (article of articles; track article.id) {
+  @for (article of articles$ | async; track article.id) {
     <app-article-item
       [article]="article"
       (quantityChange)="updateQuantity($event)">
