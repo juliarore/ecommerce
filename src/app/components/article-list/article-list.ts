@@ -5,27 +5,37 @@ import { ArticleQuantityChange } from '../../models/article-quantity-change';
 import { ArticleService } from '../../services/article-service';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-article-list',
-  imports: [CommonModule, ArticleItem],
+  imports: [CommonModule, ArticleItem, FormsModule],
   templateUrl: './article-list.html',
   styleUrl: './article-list.scss',
 })
 export class ArticleList implements OnInit {
 
   public articles$!: Observable<Article[]>;
+  public searchTerm = '';
 
   constructor(private articleService: ArticleService) { }
 
   ngOnInit(): void {
-    this.articles$ = this.articleService.getArticles();
+    this.loadArticles();
+  }
+
+  loadArticles(): void {
+    this.articles$ = this.articleService.getArticles(this.searchTerm);
+  }
+
+  applySearch(): void {
+    this.loadArticles();
   }
 
   updateQuantity(change: ArticleQuantityChange): void {
-    // Calculem la diferència entre la nova quantitat i l'antiga
     const changeInQuantity = change.quantity - change.article.quantityInCart;
-    // Actualitzem la quantitat utilitzant el servei i suscrivint-nos a l'observable
-    this.articleService.changeQuantity(change.article.id, changeInQuantity).subscribe();
+    this.articleService.changeQuantity(change.article.id, changeInQuantity).subscribe(() => {
+      this.loadArticles();
+    });
   }
 }
