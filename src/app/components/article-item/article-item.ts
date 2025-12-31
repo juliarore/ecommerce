@@ -2,10 +2,11 @@ import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from 
 import { NgClass } from '@angular/common';
 import { Article } from '../../models/article.model';
 import { ArticleQuantityChange } from '../../models/article-quantity-change';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-article-item',
-  imports: [NgClass],
+  imports: [NgClass, CurrencyPipe],
   templateUrl: './article-item.html',
   styleUrl: './article-item.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
