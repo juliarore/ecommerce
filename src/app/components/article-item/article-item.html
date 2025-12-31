@@ -1,6 +1,6 @@
 <div [class]="article.isOnSale ? 'article article-on-sale' : 'article'">
   <img
-    src="{{ article.imageUrl }}"
+    [src]="article.imageUrl | defaultImage"
     alt="{{ article.name }}"
     class="article__image"
   />
