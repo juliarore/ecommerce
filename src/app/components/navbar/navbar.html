@@ -46,6 +46,15 @@
           href="#">
           Iniciar sesión
         </a>
+      </li>
+      <li class="navbar__item">
+        <a class="navbar__link"
+          [class.navbar__link--active]="activeRoute === 'register'"
+          (click)="setActiveRoute('register')"
+          href="#">
+          Registrarse
+        </a>
+      </li>
     </ul>
   </div>
 </nav>

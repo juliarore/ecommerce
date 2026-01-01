@@ -5,10 +5,11 @@ import { Navbar } from './components/navbar/navbar';
 import { ArticleNewTemplate } from './components/article-new-template/article-new-template';
 import { ArticleNewReactive } from "./components/article-new-reactive/article-new-reactive";
 import { Login } from './components/login/login';
+import { Register } from './components/register/register';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ArticleList, Navbar, ArticleNewTemplate, ArticleNewReactive, Login],
+  imports: [RouterOutlet, ArticleList, Navbar, ArticleNewTemplate, ArticleNewReactive, Login, Register],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
