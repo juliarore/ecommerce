@@ -1,0 +1,42 @@
+<div class="login-form">
+  <h2 class="login-form__title">Iniciar sesión</h2>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form__form">
+
+    <!-- Usuario -->
+    <div class="login-form__field">
+      <label for="username" class="login-form__label">Nombre de usuario</label>
+      <input
+        type="text"
+        id="username"
+        formControlName="username"
+        placeholder="Introduce el nombre de usuario"
+        class="login-form__input">
+
+      @if (username?.invalid && (username?.touched || formSubmitted)) {
+        @if (username?.errors?.['required']) {
+          <span class="login-form__error">El nombre de usuario es obligatorio</span>
+        }
+      }
+    </div>
+
+    <!-- Contraseña -->
+    <div class="login-form__field">
+      <label for="password" class="login-form__label">Contraseña</label>
+      <input
+        type="password"
+        id="password"
+        formControlName="password"
+        placeholder="Introduce la contraseña"
+        class="login-form__input">
+
+      @if (password?.invalid && (password?.touched || formSubmitted)) {
+        @if (password?.errors?.['required']) {
+          <span class="login-form__error">La contraseña es obligatoria</span>
+        }
+      }
+    </div>
+
+    <button type="submit" class="login-form__button">Iniciar sesión</button>
+  </form>
+</div>
