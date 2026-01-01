@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ArticleForm } from '../../models/article-form-model';
-import { ArticleService } from '../../services/article-service';
+import { ArticleService } from '../../services/article-service/article-service';
 
 @Component({
   selector: 'app-article-new-template',

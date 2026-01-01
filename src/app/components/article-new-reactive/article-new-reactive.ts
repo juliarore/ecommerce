@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NameArticleValidator } from '../../validators/name-article-validator';
-import { ArticleService } from '../../services/article-service';
+import { ArticleService } from '../../services/article-service/article-service';
 
 
 @Component({
