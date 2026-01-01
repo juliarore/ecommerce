@@ -8,7 +8,7 @@ import { ArticleService } from '../../services/article-service/article-service';
   selector: 'app-article-new-reactive',
   imports: [ReactiveFormsModule],
   templateUrl: './article-new-reactive.html',
-  styleUrl: '../article-new-template/article-new-template.scss',
+  styleUrl: './article-new-reactive.scss',
 })
 export class ArticleNewReactive {
   articleForm: FormGroup;

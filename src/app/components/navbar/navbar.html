@@ -39,6 +39,13 @@
           Nuevo artículo reactivo
         </a>
       </li>
+      <li class="navbar__item">
+        <a class="navbar__link"
+          [class.navbar__link--active]="activeRoute === 'login'"
+          (click)="setActiveRoute('login')"
+          href="#">
+          Iniciar sesión
+        </a>
     </ul>
   </div>
 </nav>

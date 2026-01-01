@@ -4,10 +4,11 @@ import { ArticleList } from './components/article-list/article-list';
 import { Navbar } from './components/navbar/navbar';
 import { ArticleNewTemplate } from './components/article-new-template/article-new-template';
 import { ArticleNewReactive } from "./components/article-new-reactive/article-new-reactive";
+import { Login } from './components/login/login';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ArticleList, Navbar, ArticleNewTemplate, ArticleNewReactive],
+  imports: [RouterOutlet, ArticleList, Navbar, ArticleNewTemplate, ArticleNewReactive, Login],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
