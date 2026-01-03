@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { UserStore } from '../../services/user-store/user-store';
 
@@ -10,15 +10,6 @@ import { UserStore } from '../../services/user-store/user-store';
 })
 export class Navbar {
   constructor(public userStore: UserStore, private router: Router) {}
-
-  @Output() routeChange = new EventEmitter<string>();
-
-  activeRoute: string = 'articulos';
-
-  setActiveRoute(route: string): void {
-    this.activeRoute = route;
-    this.routeChange.emit(route);
-  }
 
   logout(): void {
     this.userStore.logout();
