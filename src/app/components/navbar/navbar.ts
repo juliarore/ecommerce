@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterLink, RouterLinkActive, Router } from '@angular/router';
+import { UserStore } from '../../services/user-store/user-store';
 
 @Component({
   selector: 'app-navbar',
@@ -8,6 +9,8 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './navbar.scss',
 })
 export class Navbar {
+  constructor(public userStore: UserStore, private router: Router) {}
+
   @Output() routeChange = new EventEmitter<string>();
 
   activeRoute: string = 'articulos';
@@ -15,5 +18,10 @@ export class Navbar {
   setActiveRoute(route: string): void {
     this.activeRoute = route;
     this.routeChange.emit(route);
+  }
+
+  logout(): void {
+    this.userStore.logout();
+    this.router.navigate(['/login']);
   }
 }

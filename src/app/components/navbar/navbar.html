@@ -5,20 +5,32 @@
     </a>
 
     <ul class="navbar__nav">
-      <li class="navbar__item">
-        <a class="navbar__link"
-          routerLink="/login"
-          routerLinkActive="navbar__link--active">
-          Iniciar sesión
-        </a>
+      @if (!userStore.isUserAuthenticated()) {
+        <li class="navbar__item">
+          <a class="navbar__link"
+            routerLink="/login"
+            routerLinkActive="navbar__link--active">
+            Iniciar sesión
+          </a>
+        </li>
+        <li class="navbar__item">
+          <a class="navbar__link"
+            routerLink="/register"
+            routerLinkActive="navbar__link--active">
+            Registrarse
+          </a>
+        </li>
+      }
+
+      @if (userStore.isUserAuthenticated()) {
+        <li class="navbar__item">
+          <a class="navbar__link"
+            (click)="logout()">
+            Cerrar sesión
+          </a>
       </li>
-      <li class="navbar__item">
-        <a class="navbar__link"
-          routerLink="/register"
-          routerLinkActive="navbar__link--active">
-          Registrarse
-        </a>
-      </li>
+      }
+
       <li class="navbar__item">
         <a class="navbar__link"
           routerLink="/articles"
@@ -26,6 +38,7 @@
           Lista de artículos
         </a>
       </li>
+
       <li class="navbar__item">
         <a class="navbar__link"
           routerLink="/article-new-reactive"
