@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
-import { ArticleList } from './components/article-list/article-list';
-import { ArticleDetail } from './components/article-detail/article-detail';
-import { Login } from './components/login/login';
-import { Register } from './components/register/register';
-import { ArticleNewReactive } from './components/article-new-reactive/article-new-reactive';
-import { ArticleNewTemplate } from './components/article-new-template/article-new-template';
+import { ArticleList } from './components/articles/article-list/article-list';
+import { ArticleDetail } from './components/articles/article-detail/article-detail';
+import { Login } from './components/auth/login/login';
+import { Register } from './components/auth/register/register';
+import { ArticleNewReactive } from './components/articles/article-new-reactive/article-new-reactive';
+import { ArticleNewTemplate } from './components/articles/article-new-template/article-new-template';
 import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [

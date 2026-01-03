@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Article } from '../../models/article.model';
+import { Article } from '../../../models/article.model';
 import { ActivatedRoute } from '@angular/router';
 import { RouterLink } from '@angular/router';
-import { ArticleService } from '../../services/article-service/article-service';
+import { ArticleService } from '../../../services/article-service/article-service';
 import { CommonModule } from '@angular/common';
 import { CurrencyPipe } from '@angular/common';
-import { DefaultImagePipe } from '../../pipes/default-image.pipe';
+import { DefaultImagePipe } from '../../../pipes/default-image.pipe';
 
 @Component({
   selector: 'app-article-detail',
