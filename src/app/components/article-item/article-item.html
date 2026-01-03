@@ -1,9 +1,11 @@
 <div [class]="article.isOnSale ? 'article article-on-sale' : 'article'">
-  <img
-    [src]="article.imageUrl | defaultImage"
-    alt="{{ article.name }}"
-    class="article__image"
-  />
+  <a [routerLink]="['/article', article.id]">
+    <img
+      [src]="article.imageUrl | defaultImage"
+      alt="{{ article.name }}"
+      class="article__image"
+    />
+  </a>
 
   <h2 class="article__name">{{ article.name }}</h2>
   <p

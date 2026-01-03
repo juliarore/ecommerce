@@ -4,10 +4,11 @@ import { Article } from '../../models/article.model';
 import { ArticleQuantityChange } from '../../models/article-quantity-change';
 import { CurrencyPipe } from '@angular/common';
 import { DefaultImagePipe } from '../../pipes/default-image.pipe';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-article-item',
-  imports: [NgClass, CurrencyPipe, DefaultImagePipe],
+  imports: [NgClass, CurrencyPipe, DefaultImagePipe, RouterLink],
   templateUrl: './article-item.html',
   styleUrl: './article-item.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

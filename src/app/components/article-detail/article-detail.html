@@ -1,0 +1,42 @@
+<div class="article-detail">
+  @if (article) {
+    <div class="article-detail__container">
+      <img
+        [src]="article.imageUrl | defaultImage"
+        alt="{{ article.name }}"
+        class="article-detail__image"
+      />
+
+      <div class="article-detail__info">
+        <h2 class="article-detail__name">{{ article.name }}</h2>
+
+        <p
+          class="article-detail__price"
+          [ngClass]="{'article-detail__price-not-on-sale': !article.isOnSale}">
+          {{ article.price | currency:'EUR':'symbol':'1.2-2':'es' }}
+        </p>
+
+        <p class="article-detail__sale" [ngClass]="article.isOnSale ? 'article-detail__sale-on-sale' : 'article-detail__sale-not-on-sale'">
+          {{ article.isOnSale ? 'Disponible' : 'Agotado' }}
+        </p>
+
+        <p class="article-detail__quantity">
+          <strong>Cantidad en el carrito:</strong> {{ article.quantityInCart }}
+        </p>
+      </div>
+    </div>
+
+    <a routerLink="/articles" class="article-detail__back-link">Volver a la lista de artículos</a>
+  } @else {
+    @if (errorMessage) {
+      <div class="article-detail__error">
+        <p>{{ errorMessage }}</p>
+      </div>
+    } @else {
+      <div class="article-detail__loading">
+        <div class="loading-spinner"></div>
+        <p>Cargando detalles del artículo...</p>
+      </div>
+    }
+  }
+</div>
