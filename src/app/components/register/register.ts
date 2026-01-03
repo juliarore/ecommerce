@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { User } from '../../services/user/user';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-register',
@@ -12,8 +14,10 @@ import { User } from '../../services/user/user';
 export class Register {
   registerForm: FormGroup;
   formSubmitted = false;
+  successMessage = '';
+  errorMessage = '';
 
-  constructor(private fb: FormBuilder, private userService: User) {
+  constructor(private fb: FormBuilder, private userService: User, private router: Router) {
     this.registerForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
@@ -27,13 +31,17 @@ export class Register {
       const { username, password } = this.registerForm.value;
 
       this.userService.register(username, password).subscribe({
-        next: (response) => {
-          console.log('Register successful:', response);
+        next: () => {
+          this.successMessage = 'Te has registrado con éxito. Ahora puedes iniciar sesión.';
+          this.errorMessage = '';
           this.registerForm.reset();
           this.formSubmitted = false;
+          setTimeout(() => this.router.navigate(['/login']), 1500);
         },
-        error: (error) => {
-          console.error('Register failed:', error);
+        error: () => {
+          this.errorMessage = 'No se ha podido hacer el registro. Por favor, inténtalo de nuevo.';
+          this.successMessage = '';
+          this.formSubmitted = false;
         },
       });
     }

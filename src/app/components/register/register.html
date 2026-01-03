@@ -39,4 +39,11 @@
 
     <button type="submit" class="register-form__button">Registrarse</button>
   </form>
+
+  <!-- Missatges de feedback -->
+  @if (successMessage) {
+    <div class="register-form__alert register-form__alert--success">{{ successMessage }}</div>
+  } @if (errorMessage) {
+    <div class="register-form__alert register-form__alert--error">{{ errorMessage }}</div>
+  }
 </div>

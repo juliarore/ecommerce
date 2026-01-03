@@ -1,8 +1,11 @@
 <div class="login-form">
   <h2 class="login-form__title">Iniciar sesión</h2>
 
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form__form">
-
+  <form
+    [formGroup]="loginForm"
+    (ngSubmit)="onSubmit()"
+    class="login-form__form"
+  >
     <!-- Usuario -->
     <div class="login-form__field">
       <label for="username" class="login-form__label">Nombre de usuario</label>
@@ -11,13 +14,13 @@
         id="username"
         formControlName="username"
         placeholder="Introduce el nombre de usuario"
-        class="login-form__input">
+        class="login-form__input"
+      />
 
-      @if (username?.invalid && (username?.touched || formSubmitted)) {
-        @if (username?.errors?.['required']) {
-          <span class="login-form__error">El nombre de usuario es obligatorio</span>
-        }
-      }
+      @if (username?.invalid && (username?.touched || formSubmitted)) { @if
+      (username?.errors?.['required']) {
+      <span class="login-form__error">El nombre de usuario es obligatorio</span>
+      } }
     </div>
 
     <!-- Contraseña -->
@@ -28,15 +31,22 @@
         id="password"
         formControlName="password"
         placeholder="Introduce la contraseña"
-        class="login-form__input">
+        class="login-form__input"
+      />
 
-      @if (password?.invalid && (password?.touched || formSubmitted)) {
-        @if (password?.errors?.['required']) {
-          <span class="login-form__error">La contraseña es obligatoria</span>
-        }
-      }
+      @if (password?.invalid && (password?.touched || formSubmitted)) { @if
+      (password?.errors?.['required']) {
+      <span class="login-form__error">La contraseña es obligatoria</span>
+      } }
     </div>
 
     <button type="submit" class="login-form__button">Iniciar sesión</button>
   </form>
+
+  <!-- Missatges de feedback -->
+  @if (successMessage) {
+    <div class="login-form__alert login-form__alert--success">{{ successMessage }}</div>
+  } @if (errorMessage) {
+    <div class="login-form__alert login-form__alert--error">{{ errorMessage }}</div>
+  }
 </div>

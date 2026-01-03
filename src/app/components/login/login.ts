@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { User } from '../../services/user/user';
 import { UserStore } from '../../services/user-store/user-store';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,11 +13,14 @@ import { UserStore } from '../../services/user-store/user-store';
 export class Login {
   loginForm: FormGroup;
   formSubmitted = false;
+  successMessage = '';
+  errorMessage = '';
 
   constructor(
     private fb: FormBuilder,
     private userService: User,
-    private userStore: UserStore
+    private userStore: UserStore,
+    private router: Router
   ) {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
@@ -36,9 +40,15 @@ export class Login {
           console.log('Login successful:', response);
           // Guardem el token utilitzant UserStore
           this.userStore.saveToken(response.token);
+          this.successMessage = 'Has iniciado sesión correctamente.';
+          this.errorMessage = '';
+          // Redirigim a la pàgina d'articles després s'un breu delay per permetre veure el missatge
+          setTimeout(() => this.router.navigate(['/articles']), 1500);
         },
-        error: (error) => {
-          console.error('Login failed:', error);
+        error: () => {
+          this.errorMessage = 'No se ha podido iniciar sesión. Por favor, verifica tus credenciales.';
+          this.successMessage = '';
+          this.formSubmitted = false;
         }
       });
     }
