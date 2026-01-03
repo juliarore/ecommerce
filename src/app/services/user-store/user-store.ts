@@ -1,16 +1,26 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserStore {
   private token: string | null = null;
-  private isAuthenticated = false;
+  private isAuthenticated = signal(false);
+
+  constructor() {
+    // Carreguem el token des de localStorage
+    const savedToken = localStorage.getItem('authToken');
+    if (savedToken) {
+      this.token = savedToken;
+      this.isAuthenticated.set(true);
+    }
+  }
 
   // Guardar el token i marcar l'usuari com a autenticat
   saveToken(token: string): void {
     this.token = token;
-    this.isAuthenticated = true;
+    this.isAuthenticated.set(true);
+    localStorage.setItem('authToken', token);
   }
 
   // Getter per obtenir el token
@@ -19,11 +29,12 @@ export class UserStore {
   }
 
   isUserAuthenticated(): boolean {
-    return this.isAuthenticated;
+    return this.isAuthenticated();
   }
 
   logout(): void {
     this.token = null;
-    this.isAuthenticated = false;
+    this.isAuthenticated.set(false);
+    localStorage.removeItem('authToken');
   }
 }

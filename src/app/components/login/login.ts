@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { User } from '../../services/user/user';
 import { UserStore } from '../../services/user-store/user-store';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   templateUrl: './login.html',
   styleUrl: './login.scss',
 })
-export class Login {
+export class Login implements OnInit {
   loginForm: FormGroup;
   formSubmitted = false;
   successMessage = '';
@@ -20,12 +20,20 @@ export class Login {
     private fb: FormBuilder,
     private userService: User,
     private userStore: UserStore,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
     });
+  }
+
+  ngOnInit(): void {
+    // Si l'usuari ja està autenticat, redirigim a la pàgina d'articles
+    if (this.userStore.isUserAuthenticated()) {
+      this.router.navigate(['/articles']);
+    }
   }
 
   onSubmit() {
@@ -42,8 +50,11 @@ export class Login {
           this.userStore.saveToken(response.token);
           this.successMessage = 'Has iniciado sesión correctamente.';
           this.errorMessage = '';
+
+          // Obtenim la ruta original a la qual l'usuari volia accedir
+          const redirectUrl = this.route.snapshot.queryParams['redirectUrl'] || '/articles';
           // Redirigim a la pàgina d'articles després s'un breu delay per permetre veure el missatge
-          setTimeout(() => this.router.navigate(['/articles']), 1500);
+          setTimeout(() => this.router.navigate([redirectUrl]), 1500);
         },
         error: () => {
           this.errorMessage = 'No se ha podido iniciar sesión. Por favor, verifica tus credenciales.';
