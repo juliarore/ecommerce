@@ -1,58 +1,36 @@
 <nav class="navbar">
   <div class="navbar__container">
-    <a class="navbar__brand"
-      (click)="setActiveRoute('inicio')"
-      href="#">
+    <a class="navbar__brand" routerLink="/login">
       <img src="/assets/images/logo.png" class="navbar__logo" alt="Logotipo Adidas">
     </a>
 
     <ul class="navbar__nav">
       <li class="navbar__item">
         <a class="navbar__link"
-          [class.navbar__link--active]="activeRoute === 'inicio'"
-          (click)="setActiveRoute('inicio')"
-          href="#">
-          Inicio
-        </a>
-      </li>
-      <li class="navbar__item">
-        <a class="navbar__link"
-          [class.navbar__link--active]="activeRoute === 'articulos'"
-          (click)="setActiveRoute('articulos')"
-          href="#">
-          Artículos
-        </a>
-      </li>
-      <li class="navbar__item">
-        <a class="navbar__link"
-          [class.navbar__link--active]="activeRoute === 'template'"
-          (click)="setActiveRoute('template')"
-          href="#">
-          Nuevo artículo template
-        </a>
-      </li>
-      <li class="navbar__item">
-        <a class="navbar__link"
-          [class.navbar__link--active]="activeRoute === 'reactive'"
-          (click)="setActiveRoute('reactive')"
-          href="#">
-          Nuevo artículo reactivo
-        </a>
-      </li>
-      <li class="navbar__item">
-        <a class="navbar__link"
-          [class.navbar__link--active]="activeRoute === 'login'"
-          (click)="setActiveRoute('login')"
-          href="#">
+          routerLink="/login"
+          routerLinkActive="navbar__link--active">
           Iniciar sesión
         </a>
       </li>
       <li class="navbar__item">
         <a class="navbar__link"
-          [class.navbar__link--active]="activeRoute === 'register'"
-          (click)="setActiveRoute('register')"
-          href="#">
+          routerLink="/register"
+          routerLinkActive="navbar__link--active">
           Registrarse
+        </a>
+      </li>
+      <li class="navbar__item">
+        <a class="navbar__link"
+          routerLink="/articles"
+          routerLinkActive="navbar__link--active">
+          Lista de artículos
+        </a>
+      </li>
+      <li class="navbar__item">
+        <a class="navbar__link"
+          routerLink="/article-new-reactive"
+          routerLinkActive="navbar__link--active">
+          Crear artículo
         </a>
       </li>
     </ul>
