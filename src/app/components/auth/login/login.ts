@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angula
 import { User } from '../../../services/user/user';
 import { UserStore } from '../../../services/user-store/user-store';
 import { ActivatedRoute, Router } from '@angular/router';
+import {UserModel } from '../../../models/user.model';
 
 @Component({
   selector: 'app-login',
@@ -36,14 +37,14 @@ export class Login implements OnInit {
     }
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.formSubmitted = true;
 
     if (this.loginForm.valid) {
-      const { username, password } = this.loginForm.value;
+      const loginData: UserModel = this.loginForm.value;
 
       // Cridem al servei User per iniciar sessió
-      this.userService.login(username, password).subscribe({
+      this.userService.login(loginData).subscribe({
         next: (response) => {
           console.log('Login successful:', response);
           // Guardem el token utilitzant UserStore
@@ -60,7 +61,7 @@ export class Login implements OnInit {
           this.errorMessage = 'No se ha podido iniciar sesión. Por favor, verifica tus credenciales.';
           this.successMessage = '';
           this.formSubmitted = false;
-        }
+        },
       });
     }
   }

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { User } from '../../../services/user/user';
 import { Router } from '@angular/router';
-
+import { UserModel } from '../../../models/user.model';
 
 @Component({
   selector: 'app-register',
@@ -28,9 +28,9 @@ export class Register {
     this.formSubmitted = true;
 
     if (this.registerForm.valid) {
-      const { username, password } = this.registerForm.value;
+      const registerData: UserModel = this.registerForm.value;
 
-      this.userService.register(username, password).subscribe({
+      this.userService.register(registerData).subscribe({
         next: () => {
           this.successMessage = 'Te has registrado con éxito. Ahora puedes iniciar sesión.';
           this.errorMessage = '';
