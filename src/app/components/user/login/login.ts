@@ -33,7 +33,7 @@ export class Login implements OnInit {
   ngOnInit(): void {
     // Si l'usuari ja està autenticat, redirigim a la pàgina d'articles
     if (this.userStore.isUserAuthenticated()) {
-      this.router.navigate(['/articles']);
+      this.router.navigate(['/articles/list']);
     }
   }
 
@@ -53,7 +53,7 @@ export class Login implements OnInit {
           this.errorMessage = '';
 
           // Obtenim la ruta original a la qual l'usuari volia accedir
-          const redirectUrl = this.route.snapshot.queryParams['redirectUrl'] || '/articles';
+          const redirectUrl = this.route.snapshot.queryParams['redirectUrl'] || '/articles/list';
           // Redirigim a la pàgina d'articles després s'un breu delay per permetre veure el missatge
           setTimeout(() => this.router.navigate([redirectUrl]), 1500);
         },

@@ -1,5 +1,5 @@
 <div [class]="article.isOnSale ? 'article article-on-sale' : 'article'">
-  <a [routerLink]="['/article', article.id]">
+  <a [routerLink]="['/articles', article.id]">
     <img
       [src]="article.imageUrl | defaultImage"
       alt="{{ article.name }}"
